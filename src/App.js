@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import TextDisplay from "./components/TextDisplay";
+import { handleInputSubmit } from "./handleInput";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [userInput, setUserInput] = useState("");
+	const [aiResponse, setAiResponse] = useState("");
+
+	return (
+		<div className="App">
+			<TextDisplay
+				userInput={userInput}
+				aiResponse={aiResponse}
+				onSubmit={(input) =>
+					handleInputSubmit(
+						input,
+						setUserInput,
+						setAiResponse,
+						userInput,
+						aiResponse
+					)
+				}
+			/>
+		</div>
+	);
 }
 
 export default App;
